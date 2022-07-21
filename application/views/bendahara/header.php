@@ -52,7 +52,8 @@
             <a href="<?php echo base_url(); ?>assets/adminlte/index3.html" class="brand-link">
                 <img src="<?php echo base_url(); ?>assets/adminlte/dist/img/AdminLTELogo.png" alt="AdminLTE Logo"
                     class="brand-image img-circle elevation-3" style="opacity: .8">
-                <span class="brand-text font-weight-light">Admin TPA</span>
+                <span class="brand-text font-weight-light">Bendahara TPA</span>
+
             </a>
 
             <!-- Sidebar -->
@@ -65,22 +66,22 @@
                         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                         <?php
-            $menu_master1 = array('santri', 'santri_detil', 'santri_tambah', 'santri_edit');
-            $menu_master2 = array('guru', 'guru_detil', 'guru_tambah', 'guru_edit');
-            $menu_master3 = array('kelas', 'kelas_detil', 'kelas_tambah', 'kelas_edit');
-            $menu_master4 = array('sumbangan');
-            $menu_master5 = array('list_santri_per_kelas');
-            ?>
+                        $menu_master1 = array('santri', 'santri_detil', 'santri_tambah', 'santri_edit');
+                        $menu_master2 = array('guru', 'guru_detil', 'guru_tambah', 'guru_edit');
+                        $menu_master3 = array('kelas', 'kelas_detil', 'kelas_tambah', 'kelas_edit');
+                        $menu_master4 = array('sumbangan');
+                        $menu_master5 = array('list_santri_per_kelas');
+                        ?>
                         <li class="nav-item  
               <?php
-              if (in_array($page, $menu_master1) || in_array($page, $menu_master2) || in_array($page, $menu_master3))
-                echo "menu-open";
-              ?>
+                if (in_array($page, $menu_master1) || in_array($page, $menu_master2) || in_array($page, $menu_master3))
+                    echo "menu-open";
+                ?>
             ">
                             <a href="#" class="nav-link 
                 <?php
                 if (in_array($page, $menu_master1) || in_array($page, $menu_master2) || in_array($page, $menu_master3))
-                  echo "active";
+                    echo "active";
                 ?>
               ">
                                 <i class="nav-icon fas fa-book"></i>
@@ -92,10 +93,10 @@
 
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="<?php echo base_url('admin/santri'); ?>" class="nav-link
+                                    <a href="<?php echo base_url('bendahara/santri'); ?>" class="nav-link
                     <?php
                     if (in_array($page, $menu_master1))
-                      echo "active";
+                        echo "active";
                     ?>
                   ">
                                         <i class="nav-icon fas fa-users"></i>
@@ -104,24 +105,24 @@
                                 </li>
 
                                 <li class="nav-item">
-                                    <a href="<?php echo base_url('admin/guru'); ?>" class="nav-link
+                                    <a href="<?php echo base_url('bendahara/guru'); ?>" class="nav-link
                     <?php
                     if (in_array($page, $menu_master2))
-                      echo "active";
+                        echo "active";
                     ?>                  
-                  ">
+                    ">
                                         <i class="nav-icon fas fa-user"></i>
                                         <p>Data Guru</p>
                                     </a>
                                 </li>
 
                                 <li class="nav-item">
-                                    <a href="<?php echo base_url('admin/kelas'); ?>" class="nav-link
+                                    <a href="<?php echo base_url('bendahara/kelas'); ?>" class="nav-link
                     <?php
                     if (in_array($page, $menu_master3))
-                      echo "active";
+                        echo "active";
                     ?>                  
-                  ">
+                    ">
                                         <i class="nav-icon fas fa-building"></i>
                                         <p>Data Kelas</p>
                                     </a>
@@ -130,10 +131,10 @@
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a href="<?php echo base_url("admin/list_santri_per_kelas"); ?>" class="nav-link
+                            <a href="<?php echo base_url("bendahara/list_santri_per_kelas"); ?>" class="nav-link
                             <?php
                             if (in_array($page, $menu_master5))
-                              echo "active";
+                                echo "active";
                             ?>
                             ">
                                 <i class="nav-icon fas fa-id-badge"></i>
@@ -143,10 +144,10 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="<?php echo base_url("admin/sumbangan"); ?>" class="nav-link 
+                            <a href="<?php echo base_url("bendahara/sumbangan"); ?>" class="nav-link 
                             <?php
                             if (in_array($page, $menu_master4))
-                              echo "active";
+                                echo "active";
                             ?>
                             ">
 
