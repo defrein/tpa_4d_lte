@@ -1,5 +1,5 @@
 <?php
-class M_admin extends CI_Model
+class M_bendahara extends CI_Model
 {
 
     public function __construct()
@@ -28,69 +28,29 @@ class M_admin extends CI_Model
         return $query->row_array();
     }
 
-    public function dt_santri_tambah()
+    //=============================== dropdown santri ===============================
+    public function dropdown_santri()
     {
-        $data = array(
-            'nama_santri' => $this->input->post('nama_santri'),
-            'nama_alias' => $this->input->post('nama_alias'),
-            'id_guru' => $this->input->post('id_guru'),
-            'id_kelas' => $this->input->post('id_kelas')
-        );
-        return $this->db->insert('santri', $data);
-    }
+        $query = $this->db->get('santri');
+        $result = $query->result();
 
-    public function dt_santri_edit($id)
-    {
-        $data = array(
-            'nama_santri' => $this->input->post('nama_santri'),
-            'nama_alias' => $this->input->post('nama_alias'),
-            'id_guru' => $this->input->post('id_guru'),
-            'id_kelas' => $this->input->post('id_kelas')
-        );
-        $this->db->where('id_santri', $id);
-        return $this->db->update('santri', $data);
+        $id_santri = array('-Pilih-');
+        $nama_santri = array('-Pilih-');
+
+        for ($i = 0; $i < count($result); $i++) {
+            array_push($id_santri, $result[$i]->id_santri);
+            array_push($nama_santri, $result[$i]->nama_santri);
+        }
+        return array_combine($id_santri, $nama_santri);
     }
 
     //=============================== GURU ===============================
-    public function dropdown_guru()
-    {
-        $query = $this->db->get('guru');
-        $result = $query->result();
-
-        $id_guru = array('-Pilih-');
-        $nama_guru = array('-Pilih-');
-
-        for ($i = 0; $i < count($result); $i++) {
-            array_push($id_guru, $result[$i]->id_guru);
-            array_push($nama_guru, $result[$i]->nama_guru);
-        }
-        return array_combine($id_guru, $nama_guru);
-    }
-
     public function dt_guru($id = FALSE)
     {
         $this->db->select('s.id_guru, s.nama_guru');
         $this->db->from('guru s');
         $query = $this->db->get();
         return $query->result_array();
-    }
-
-    public function guru_tambah()
-    {
-        $data = array(
-            'nama_guru' => $this->input->post('nama_guru'),
-        );
-
-        return $this->db->insert('guru', $data);
-    }
-
-    public function dt_guru_edit($id)
-    {
-        $data = array(
-            'nama_guru' => $this->input->post('nama_guru'),
-        );
-        $this->db->where('id_guru', $id);
-        return $this->db->update('guru', $data);
     }
 
     //=============================== kelas ===============================
@@ -117,23 +77,7 @@ class M_admin extends CI_Model
         return $query->result_array();
     }
 
-    public function kelas_tambah()
-    {
-        $data = array(
-            'nama_kelas' => $this->input->post('nama_kelas'),
-        );
 
-        return $this->db->insert('kelas', $data);
-    }
-
-    public function dt_kelas_edit($id)
-    {
-        $data = array(
-            'nama_kelas' => $this->input->post('nama_kelas'),
-        );
-        $this->db->where('id_kelas', $id);
-        return $this->db->update('kelas', $data);
-    }
     //=============================== DATA SANTRI PER KELAS===============================
     public function dt_santri_per_kelas($id)
     {
@@ -155,5 +99,40 @@ class M_admin extends CI_Model
         $this->db->join('users u', 'u.username = smb.username', 'left');
         $query = $this->db->get();
         return $query->result_array();
+    }
+
+    public function dt_sumbangan_detil($id)
+    {
+        $this->db->select('*');
+        $this->db->from('sumbangan smb');
+        $this->db->join('santri s', 's.id_santri = smb.id_santri', 'left');
+        $this->db->join('kelas k', 'k.id_kelas = s.id_kelas', 'left');
+        $this->db->join('users u', 'u.username = smb.username', 'left');
+        $this->db->where('s.id_santri', $id);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    public function dt_sumbangan_tambah()
+    {
+        $data = array(
+            'id_santri' => $this->input->post('id_santri'),
+            'tanggal' => $this->input->post('tanggal'),
+            'jumlah' => $this->input->post('jumlah'),
+            'username' => $this->input->post('username')
+        );
+        return $this->db->insert('sumbangan', $data);
+    }
+
+    public function dt_sumbangan_edit($id)
+    {
+        $data = array(
+            'id_santri' => $this->input->post('id_santri'),
+            'tanggal' => $this->input->post('tanggal'),
+            'jumlah' => $this->input->post('jumlah'),
+            'username' => $this->input->post('username')
+        );
+        $this->db->where('id_sumbangan', $id);
+        return $this->db->update('sumbangan', $data);
     }
 }
