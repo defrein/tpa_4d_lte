@@ -308,7 +308,7 @@ else if ($page == 'list_santri_per_kelas') {
 }
 
 //==================================== Sumbangan ====================================
-else if ($page == 'sumbangan') {
+else if ($page == 'sumbangan' || $page == 'sumbangan_filter') {
 ?>
 <div class="content-wrapper">
     <section class="content-header">
@@ -324,30 +324,43 @@ else if ($page == 'sumbangan') {
     <section class="content">
         <div class="card">
             <div class="card-body">
+
                 <a href=<?php echo base_url("bendahara/sumbangan_tambah") ?> class="btn btn-primary"
                     style="margin-bottom:15px">Tambah Sumbangan</a>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-2">
+                            Pilih Santri
+                        </div>
+                        <div class="col-sm-2">
+                            <?php echo form_dropdown('id_santri', $ddsantri, set_value('id_santri'), 'id="pd_santri" class="form-control"'); ?>
+                        </div>
+                    </div>
+                    <div class="col-sm-8">
+                    </div>
+                </div>
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th>Id Sumbangan</th>
+                            <th>No</th>
                             <th>Tanggal</th>
                             <th>Nama Santri</th>
                             <th>Kelas</th>
                             <th>Jumlah</th>
-                            <th>Bendahara</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
 
                     <?php
+                        $i = 0;
                         foreach ($sumbangan as $d) { ?>
+                    <?php $i++; ?>
                     <tr>
-                        <td><?php echo $d['id_sumbangan'] ?></td>
+                        <td><?php echo $i ?></td>
                         <td><?php echo $d['tanggal'] ?></td>
                         <td><?php echo $d['nama_santri'] ?></td>
                         <td><?php echo $d['nama_kelas'] ?></td>
                         <td><?php echo $d['jumlah'] ?></td>
-                        <td><?php echo $d['username'] ?></td>
                         <td>
                             <a href=<?php echo base_url("bendahara/sumbangan_edit/") . $d['id_sumbangan']; ?>> <i
                                     class="fas fa-pencil-alt"></i> </a>
@@ -385,35 +398,29 @@ else if ($page == 'sumbangan_detil') {
             </div>
         </div>
     </section>
+
     <section class="content">
         <div class="card">
             <div class="card-body">
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>Id Sumbangan</th>
-                            <th>Tanggal</th>
-                            <th>Nama Santri</th>
-                            <th>Kelas</th>
-                            <th>Jumlah</th>
-                            <th>Bendahara</th>
-                        </tr>
-                    </thead>
 
-                    <?php
-                        foreach ($sumbangan as $d) { ?>
-                    <tr>
-                        <td><?php echo $d['id_sumbangan'] ?></td>
-                        <td><?php echo $d['tanggal'] ?></td>
-                        <td><?php echo $d['nama_santri'] ?></td>
-                        <td><?php echo $d['nama_kelas'] ?></td>
-                        <td><?php echo $d['jumlah'] ?></td>
-                        <td><?php echo $d['username'] ?></td>
-                    </tr>
-                    <?php
-                        }
-                        ?>
-                </table>
+                <dl class="row">
+                    <dt class="col-sm-2">Id Sumbangan</dt>
+                    <dd class="col-sm-10"><?php echo $sumbangan['id_sumbangan']; ?></dd>
+                    <dt class="col-sm-2">Tanggal</dt>
+                    <dd class="col-sm-10"><?php echo $sumbangan['tanggal']; ?></dd>
+                    <dt class="col-sm-2">Nama Santri</dt>
+                    <dd class="col-sm-10"><?php echo $sumbangan['nama_santri']; ?></dd>
+                    <dt class="col-sm-2">Nama Alias</dt>
+                    <dd class="col-sm-10"><?php echo $sumbangan['nama_alias']; ?></dd>
+                    <dt class="col-sm-2">Nama Guru</dt>
+                    <dd class="col-sm-10"><?php echo $sumbangan['nama_guru']; ?></dd>
+                    <dt class="col-sm-2">Kelas</dt>
+                    <dd class="col-sm-10"><?php echo $sumbangan['nama_kelas']; ?></dd>
+                    <dt class="col-sm-2">Jumlah</dt>
+                    <dd class="col-sm-10"><?php echo $sumbangan['jumlah']; ?></dd>
+                    <dt class="col-sm-2">Bendahara</dt>
+                    <dd class="col-sm-10"><?php echo $sumbangan['username']; ?></dd>
+                </dl>
 
             </div>
         </div>
@@ -421,7 +428,6 @@ else if ($page == 'sumbangan_detil') {
 </div>
 <?php
 }
-
 
 //--------------------------------- TAMBAH SUMBANGAN---------------------------------
 else if ($page == 'sumbangan_tambah') {
@@ -441,7 +447,7 @@ else if ($page == 'sumbangan_tambah') {
         <div class="card">
             <div class="card-body">
 
-                <form method="POST" action="<?php echo base_url('bendahara/sumbangan_tambah'); ?>"
+                <form method="POST" action="<?php echo base_url('admin/santri_edit/' . $d['id_santri']); ?>"
                     class="form-horizontal">
 
                     <div class="card-body">
@@ -513,7 +519,7 @@ else if ($page == 'sumbangan_edit') {
         <div class="card">
             <div class="card-body">
 
-                <form method="POST" action="<?php echo base_url('bendahara/sumbangan_edit/' . $d['id_santri']); ?>"
+                <form method="POST" action="<?php echo base_url('bendahara/sumbangan_edit/' . $d['id_sumbangan']); ?>"
                     class="form-horizontal">
 
                     <div class="card-body">
@@ -542,10 +548,9 @@ else if ($page == 'sumbangan_edit') {
                         <div class="form-group row">
                             <label for="jumlah" class="col-sm-2 col-form-label">Jumlah</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="jumlah" id="jumlah"
+                                <input type="number" class="form-control" name="jumlah" id="jumlah"
                                     value="<?php echo set_value('jumlah', $d['jumlah']); ?>">
-                                <span
-                                    class="badge badge-warning"><?php echo strip_tags(form_error('nama_alias')); ?></span>
+                                <span class="badge badge-warning"><?php echo strip_tags(form_error('jumlah')); ?></span>
                             </div>
                         </div>
 
@@ -555,7 +560,7 @@ else if ($page == 'sumbangan_edit') {
                                 <input type="text" class="form-control" name="username" id="username"
                                     value="<?php echo set_value('username', $d['username']); ?>" readonly>
                                 <span
-                                    class="badge badge-warning"><?php echo strip_tags(form_error('nama_alias')); ?></span>
+                                    class="badge badge-warning"><?php echo strip_tags(form_error('username')); ?></span>
                             </div>
                         </div>
 
@@ -563,6 +568,10 @@ else if ($page == 'sumbangan_edit') {
                     </div>
                     <div class="card-footer">
                         <button type="submit" class="btn btn-info">Simpan</button>
+
+                        <a href="<?php echo base_url('bendahara/sumbangan'); ?>"><button
+                                class="btn btn-danger">Batal</button></a>
+
                     </div>
                 </form>
 

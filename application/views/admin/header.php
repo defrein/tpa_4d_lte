@@ -23,7 +23,23 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/adminlte/dist/css/adminlte.min.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/style_umum.css">
+    <style>
+    tr td a {
+        margin: 0 10px;
+    }
 
+    .fa-trash-alt {
+        color: red;
+    }
+
+    .fa-search-plus {
+        color: green;
+    }
+
+    .fa-pencil-alt {
+        color: orange;
+    }
+    </style>
 
 </head>
 
@@ -65,22 +81,22 @@
                         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                         <?php
-            $menu_master1 = array('santri', 'santri_detil', 'santri_tambah', 'santri_edit');
-            $menu_master2 = array('guru', 'guru_detil', 'guru_tambah', 'guru_edit');
-            $menu_master3 = array('kelas', 'kelas_detil', 'kelas_tambah', 'kelas_edit');
-            $menu_master4 = array('sumbangan');
-            $menu_master5 = array('list_santri_per_kelas');
-            ?>
+                        $menu_master1 = array('santri', 'santri_detil', 'santri_tambah', 'santri_edit');
+                        $menu_master2 = array('guru', 'guru_detil', 'guru_tambah', 'guru_edit');
+                        $menu_master3 = array('kelas', 'kelas_detil', 'kelas_tambah', 'kelas_edit');
+                        $menu_master4 = array('sumbangan');
+                        $menu_master5 = array('list_santri_per_kelas');
+                        ?>
                         <li class="nav-item  
               <?php
-              if (in_array($page, $menu_master1) || in_array($page, $menu_master2) || in_array($page, $menu_master3))
-                echo "menu-open";
-              ?>
+                if (in_array($page, $menu_master1) || in_array($page, $menu_master2) || in_array($page, $menu_master3))
+                    echo "menu-open";
+                ?>
             ">
                             <a href="#" class="nav-link 
                 <?php
                 if (in_array($page, $menu_master1) || in_array($page, $menu_master2) || in_array($page, $menu_master3))
-                  echo "active";
+                    echo "active";
                 ?>
               ">
                                 <i class="nav-icon fas fa-book"></i>
@@ -95,7 +111,7 @@
                                     <a href="<?php echo base_url('admin/santri'); ?>" class="nav-link
                     <?php
                     if (in_array($page, $menu_master1))
-                      echo "active";
+                        echo "active";
                     ?>
                   ">
                                         <i class="nav-icon fas fa-users"></i>
@@ -107,7 +123,7 @@
                                     <a href="<?php echo base_url('admin/guru'); ?>" class="nav-link
                     <?php
                     if (in_array($page, $menu_master2))
-                      echo "active";
+                        echo "active";
                     ?>                  
                   ">
                                         <i class="nav-icon fas fa-user"></i>
@@ -119,7 +135,7 @@
                                     <a href="<?php echo base_url('admin/kelas'); ?>" class="nav-link
                     <?php
                     if (in_array($page, $menu_master3))
-                      echo "active";
+                        echo "active";
                     ?>                  
                   ">
                                         <i class="nav-icon fas fa-building"></i>
@@ -133,7 +149,7 @@
                             <a href="<?php echo base_url("admin/list_santri_per_kelas"); ?>" class="nav-link
                             <?php
                             if (in_array($page, $menu_master5))
-                              echo "active";
+                                echo "active";
                             ?>
                             ">
                                 <i class="nav-icon fas fa-id-badge"></i>
@@ -146,7 +162,7 @@
                             <a href="<?php echo base_url("admin/sumbangan"); ?>" class="nav-link 
                             <?php
                             if (in_array($page, $menu_master4))
-                              echo "active";
+                                echo "active";
                             ?>
                             ">
 

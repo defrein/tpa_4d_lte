@@ -83,9 +83,22 @@ class Bendahara extends CI_Controller
     {
         $data['judul'] = 'Data Sumbangan TPA Aisyiah';
         $data['page'] = 'sumbangan';
+        $data['ddsantri'] = $this->m_bendahara->dropdown_santri();
+
         $data['sumbangan'] = $this->m_bendahara->dt_sumbangan();
+
         $this->tampil($data);
     }
+
+    public function sumbangan_filter($id = FALSE)
+    {
+        $data['judul'] = 'Data Sumbangan TPA Aisyiah';
+        $data['page'] = 'sumbangan_filter';
+        $data['ddsantri'] = $this->m_bendahara->dropdown_santri();
+        $data['sumbangan'] = $this->m_bendahara->dt_sumbangan_filter($id);
+        $this->tampil($data);
+    }
+
 
     public function sumbangan_detil($id)
     {
@@ -120,7 +133,7 @@ class Bendahara extends CI_Controller
         $data['page'] = 'sumbangan_edit';
         $this->form_validation->set_rules('tanggal', 'Isikan tanggal', 'required');
         $this->form_validation->set_rules('id_santri', 'Pilih id santri', 'callback_dd_cek');
-        $this->form_validation->set_rules('jumlah', 'Isikan jumlah', 'required');
+        $this->form_validation->set_rules('jumlah', 'isikan', 'required');
 
         $data['ddsantri'] = $this->m_bendahara->dropdown_santri();
         $data['d'] = $this->m_umum->cari_data('sumbangan', 'id_sumbangan', $id);

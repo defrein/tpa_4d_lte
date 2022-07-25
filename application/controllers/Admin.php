@@ -215,7 +215,7 @@ class Admin extends CI_Controller
 		$this->tampil($data);
 	}
 
-	//============================== LIST Santri per kelas ==============================
+	//============================== Sumbangan ==============================
 	public function sumbangan()
 	{
 		$data['judul'] = 'Data Sumbangan TPA Aisyiah';
@@ -223,7 +223,6 @@ class Admin extends CI_Controller
 		$data['sumbangan'] = $this->m_admin->dt_sumbangan();
 		$this->tampil($data);
 	}
-
 
 
 

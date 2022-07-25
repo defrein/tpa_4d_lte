@@ -23,7 +23,23 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/adminlte/dist/css/adminlte.min.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/style_umum.css">
+    <style>
+    tr td a {
+        margin: 0 10px;
+    }
 
+    .fa-trash-alt {
+        color: red;
+    }
+
+    .fa-search-plus {
+        color: green;
+    }
+
+    .fa-pencil-alt {
+        color: orange;
+    }
+    </style>
 
 </head>
 
@@ -69,7 +85,7 @@
                         $menu_master1 = array('santri', 'santri_detil', 'santri_tambah', 'santri_edit');
                         $menu_master2 = array('guru', 'guru_detil', 'guru_tambah', 'guru_edit');
                         $menu_master3 = array('kelas', 'kelas_detil', 'kelas_tambah', 'kelas_edit');
-                        $menu_master4 = array('sumbangan');
+                        $menu_master4 = array('sumbangan', 'sumbangan_tambah', 'sumbangan_edit', 'sumbangan_detil');
                         $menu_master5 = array('list_santri_per_kelas');
                         ?>
                         <li class="nav-item  

@@ -101,7 +101,7 @@ class M_bendahara extends CI_Model
         return $query->result_array();
     }
 
-    public function dt_sumbangan_detil($id)
+    public function dt_sumbangan_filter($id)
     {
         $this->db->select('*');
         $this->db->from('sumbangan smb');
@@ -111,6 +111,19 @@ class M_bendahara extends CI_Model
         $this->db->where('s.id_santri', $id);
         $query = $this->db->get();
         return $query->result_array();
+    }
+
+    public function dt_sumbangan_detil($id)
+    {
+        $this->db->select('*');
+        $this->db->from('sumbangan smb');
+        $this->db->join('santri s', 's.id_santri = smb.id_santri', 'left');
+        $this->db->join('kelas k', 'k.id_kelas = s.id_kelas', 'left');
+        $this->db->join('users u', 'u.username = smb.username', 'left');
+        $this->db->join('guru g', 'g.id_guru = s.id_guru', 'left');
+        $this->db->where('id_sumbangan', $id);
+        $query = $this->db->get();
+        return $query->row_array();
     }
 
     public function dt_sumbangan_tambah()

@@ -56,14 +56,13 @@ $(function() {
 
     // $("#pilih_kelas").click(function() {
     //   var pilih = $("#pd_kelas").val();
-    //   window.location.href = "<?php echo base_url('bendahara/list_santri_per_kelas/'); ?>" + pilih;
+    //   window.location.href = "<?php echo base_url('admin/list_santri_per_kelas/'); ?>" + pilih;
     // });
 
-    $("#pd_kelas").change(function() {
+    $("#pd_santri").change(function() {
         var end = this.value;
-        var firstDropVal = $('#pd_kelas').val();
-        window.location.href = "<?php echo base_url('bendahara/list_santri_per_kelas/'); ?>" +
-            firstDropVal;
+        var firstDropVal = $('#pd_santri').val();
+        window.location.href = "<?php echo base_url('bendahara/sumbangan_filter/'); ?>" + firstDropVal;
     });
 
 });
