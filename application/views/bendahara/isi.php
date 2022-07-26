@@ -35,14 +35,14 @@ if ($page == 'home') {
                     <!-- small box -->
                     <div class="small-box bg-success">
                         <div class="inner">
-                            <h3><?php echo $jml_guru; ?></h3>
+                            <h3><?php echo $total_sumbangan; ?></h3>
 
-                            <p>Jumlah Guru</p>
+                            <p>Total Sumbangan</p>
                         </div>
                         <div class="icon">
-                            <i class="ion ion-person"></i>
+                            <i class="ion ion-cash"></i>
                         </div>
-                        <a href="<?php echo base_url('bendahara/guru') ?>" class="small-box-footer">More info <i
+                        <a href="<?php echo base_url('bendahara/sumbangan') ?>" class="small-box-footer">More info <i
                                 class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
@@ -223,27 +223,46 @@ else if ($page == 'guru') {
 //==================================== kelas ====================================
 else if ($page == 'kelas') {
 ?>
-<div class="content-wrapper" style="padding-left:10px">
+<div class="content-wrapper">
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1><?php echo  $judul; ?></h1>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <h1><?php echo  $judul; ?></h1>
-    <table border=1>
-        <tr>
-            <th>Id kelas</th>
-            <th>Nama</th>
-        </tr>
-        <?php
-            foreach ($kelas as $d) { ?>
-        <tr>
-            <td><?php echo $d['id_kelas'] ?></td>
-            <td><?php echo $d['nama_kelas'] ?></td>
-        </tr>
-        <?php
-            }
-            ?>
-    </table>
-    <br><i>Halaman Kelas ini sengaja tanpa Style CSS agar tampak Core Coding nya</i>
+    <section class="content">
+        <div class="card">
+            <div class="card-body">
 
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Id Kelas</th>
+                            <th>Nama Kelas</th>
+                        </tr>
+                    </thead>
+
+                    <?php
+                        foreach ($kelas as $d) { ?>
+                    <tr>
+                        <td><?php echo $d['id_kelas'] ?></td>
+                        <td><?php echo $d['nama_kelas'] ?></td>
+
+                    </tr>
+                    <?php
+                        }
+                        ?>
+                </table>
+
+            </div>
+        </div>
+    </section>
 </div>
+
 <?php
 }
 
@@ -447,7 +466,7 @@ else if ($page == 'sumbangan_tambah') {
         <div class="card">
             <div class="card-body">
 
-                <form method="POST" action="<?php echo base_url('admin/santri_edit/' . $d['id_santri']); ?>"
+                <form method="POST" action="<?php echo base_url('bendahara/sumbangan_tambah'); ?>"
                     class="form-horizontal">
 
                     <div class="card-body">

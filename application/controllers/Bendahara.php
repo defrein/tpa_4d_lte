@@ -26,7 +26,7 @@ class Bendahara extends CI_Controller
         $data['judul']    = 'Selamat Datang di TPA Aisyiah Attaqwa';
         $data['page']    = 'home';
         $data['jml_santri']    = $this->m_umum->jumlah_record_tabel('santri');
-        $data['jml_guru']    = $this->m_umum->jumlah_record_tabel('guru');
+        $data['total_sumbangan']    = $this->m_bendahara->total_sumbangan_santri();
         $this->tampil($data);
     }
 

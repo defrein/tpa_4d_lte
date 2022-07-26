@@ -148,4 +148,16 @@ class M_bendahara extends CI_Model
         $this->db->where('id_sumbangan', $id);
         return $this->db->update('sumbangan', $data);
     }
+
+
+    function total_sumbangan_santri()
+    {
+        $this->db->select_sum('jumlah');
+        $this->db->from('sumbangan');
+        $query = $this->db->get();
+        $result = $query->row();
+        if (isset($result))
+            return $result->jumlah;
+        return 0;
+    }
 }

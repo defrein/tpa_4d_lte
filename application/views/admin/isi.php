@@ -494,69 +494,157 @@ else if ($page == 'guru_edit') {
 //==================================== kelas ====================================
 else if ($page == 'kelas') {
 ?>
-<div class="content-wrapper" style="padding-left:10px">
+<div class="content-wrapper">
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1><?php echo  $judul; ?></h1>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <h1><?php echo  $judul; ?></h1>
-    <a href=<?php echo base_url("admin/kelas_tambah") ?>>Tambah kelas</a>
-    <table border=1>
-        <tr>
-            <th>Id kelas</th>
-            <th>Nama</th>
-            <th>Aksi</th>
-        </tr>
-        <?php
-            foreach ($kelas as $d) { ?>
-        <tr>
-            <td><?php echo $d['id_kelas'] ?></td>
-            <td><?php echo $d['nama_kelas'] ?></td>
-            <td>
-                <a href=<?php echo base_url("admin/kelas_edit/") . $d['id_kelas']; ?>>Edit </a>
-                <a href=<?php echo base_url("admin/kelas_hapus/") . $d['id_kelas']; ?>
-                    onclick="return confirm('Yakin menghapus kelas : <?php echo $d['nama_kelas']; ?> ?');" ;> Hapus</a>
-            </td>
-        </tr>
-        <?php
-            }
-            ?>
-    </table>
-    <br><i>Halaman Kelas ini sengaja tanpa Style CSS agar tampak Core Coding nya</i>
+    <section class="content">
+        <div class="card">
+            <div class="card-body">
+                <a href=<?php echo base_url("admin/kelas_tambah") ?> class="btn btn-primary"
+                    style="margin-bottom:15px">Tambah Kelas</a>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Id Kelas</th>
+                            <th>Nama Kelas</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
 
+                    <?php
+                        foreach ($kelas as $d) { ?>
+                    <tr>
+                        <td><?php echo $d['id_kelas'] ?></td>
+                        <td><?php echo $d['nama_kelas'] ?></td>
+                        <td>
+                            <a href=<?php echo base_url("admin/kelas_edit/") . $d['id_kelas']; ?>>Edit </a>
+                            <a href=<?php echo base_url("admin/kelas_hapus/") . $d['id_kelas']; ?>
+                                onclick="return confirm('Yakin menghapus kelas : <?php echo $d['nama_kelas']; ?> ?');"
+                                ;> Hapus</a>
+                        </td>
+                    </tr>
+                    <?php
+                        }
+                        ?>
+                </table>
+
+            </div>
+        </div>
+    </section>
 </div>
 <?php
 }
 //--------------------------------- TAMBAH ---------------------------------
 else if ($page == 'kelas_tambah') {
 ?>
-<div class="content-wrapper" style="padding-left:10px">
+<div class="content-wrapper">
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1><?php echo  $judul; ?></h1>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <h1><?php echo  $judul; ?></h1>
+    <section class="content">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Isikan Data Dengan Benar</h3>
+            </div>
+            <div class="card-body">
 
-    <form method="POST" action="<?php echo base_url('admin/kelas_tambah'); ?>">
-        Nama kelas
-        <input type="text" name="nama_kelas" value="<?php echo set_value('nama_kelas'); ?>"
-            placeholder="Masukkan Nama kelas">
-        <?php echo form_error('nama_kelas'); ?><br>
-        <input type="submit" value="Simpan">
-    </form>
-    <br><i>Halaman Tambah Kelas ini sengaja tanpa Style CSS agar tampak Core Coding nya<i><br><br>
+                <?php echo validation_errors(); ?>
 
+                <form method="POST" action="<?php echo base_url('admin/kelas_tambah'); ?>" class="form-horizontal">
+
+                    <div class="card-body">
+
+                        <div class="form-group row">
+                            <label for="nama_kelas" class="col-sm-2 col-form-label">Nama Kelas</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="nama_kelas" id="nama_kelas"
+                                    value="<?php echo set_value('nama_kelas'); ?>" placeholder="Masukkan Nama Kelas">
+                                <span
+                                    class="badge badge-warning"><?php echo strip_tags(form_error('nama_kelas')); ?></span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-info">Simpan</button>
+                    </div>
+                </form>
+
+            </div>
+            <div class="card-footer">
+                Create By Agus SBN @2022
+            </div>
+        </div>
+    </section>
 </div>
 <?php
 }
 //--------------------------------- EDIT ---------------------------------
 else if ($page == 'kelas_edit') {
 ?>
-<div class="content-wrapper" style="padding-left:10px">
+<div class="content-wrapper">
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1><?php echo  $judul; ?></h1>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <h1><?php echo  $judul; ?></h1>
-    <form method="POST" action="<?php echo base_url('admin/kelas_edit/' . $d['id_kelas']); ?>">
-        Nama kelas
-        <input type="text" name="nama_kelas" value="<?php echo set_value('nama_kelas', $d['nama_kelas']); ?>">
-        <?php echo form_error('nama_kelas'); ?><br>
-        <input type="submit" value="Simpan">
-    </form>
-    Create By Agus SBN @2022
-    <i>Halaman EDIT Kelas ini sengaja tanpa Style CSS agar tampak Core Coding nya</i><br>
+    <section class="content">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Isikan Data Dengan Benar</h3>
+            </div>
+            <div class="card-body">
+
+                <?php echo validation_errors(); ?>
+
+                <form method="POST" action="<?php echo base_url('admin/kelas_edit/' . $d['id_kelas']); ?>"
+                    class="form-horizontal">
+
+                    <div class="card-body">
+
+                        <div class="form-group row">
+                            <label for="nama_guru" class="col-sm-2 col-form-label">Nama Kelas</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="nama_kelas" id="nama_kelas"
+                                    value="<?php echo set_value('nama_kelas', $d['nama_kelas']); ?>"
+                                    placeholder="Masukkan Nama Kelas">
+                                <span
+                                    class="badge badge-warning"><?php echo strip_tags(form_error('nama_kelas')); ?></span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-info">Simpan</button>
+                    </div>
+                </form>
+
+            </div>
+            <div class="card-footer">
+                Create By Agus SBN @2022
+            </div>
+        </div>
+    </section>
 </div>
 
 <?php
